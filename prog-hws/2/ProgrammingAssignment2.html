@@ -1,0 +1,307 @@
+<html>
+<head>
+
+<font size="6">Computer Graphics I -- Programming Assignment 2: Exam Implement</font>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<div >
+  <canvas style="background-color:#ffffff;"id="myCanvas" width="1000" height="600" style="border:1px solid #d3d3d3;"></canvas>
+</div>
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+<script>
+
+$(document).ready(function(){
+
+    $("#clear").click(function(){
+        clrcan();
+    });
+
+    $("#q1").click(function(){
+        clrcan();
+        drawfactal($("#pri").val(),$("#ratio").val(), $("#iter").val(), $("#color").val(), $("#thick").val());
+        //aaa( $("#iter").val(),$("#ratio").val());
+    });
+    $("#q2").click(function(){
+        clrcan();
+        drawheel($("#score").val(),$("#rad").val(),$("#color").val(), $("#thick").val());
+    });
+});
+</script>
+
+</head>
+
+<body style="background-color:#33c4ff;">
+
+
+<script language="javascript">
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+
+function drawfactal(p, r, i, color, thick){
+  ctx.strokeStyle = color;
+  ctx.lineWidth = thick;
+  if(p == 'line'){
+    var x =250, y=300;
+    long = 400;
+    d = Math.PI / 180;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.moveTo(0, 0);
+    recur(i,r);
+    ctx.restore();
+    ctx.stroke();
+  }
+  else if(p == 'polyline'){
+    var x =400, y=200;
+    long = 250;
+    d = Math.PI / 180;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.moveTo(0, 0);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(90 * d);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(90 * d);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(45 * d);
+    recur(i,r);
+    ctx.restore();
+    ctx.stroke();
+  }
+  else if(p == 'polygon'){
+    var x =400, y=120;
+    long = 250;
+    d = Math.PI / 180;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.moveTo(0, 0);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(72 * d);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(72 * d);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(72 * d);
+    recur(i,r);
+    ctx.moveTo(0, 0);
+    ctx.rotate(72 * d);
+    recur(i,r);
+    ctx.restore();
+    ctx.stroke();
+  }
+  else if(p == 'rectangle'){
+    var x =300, y=200;
+    long = 400;
+    d = Math.PI / 180;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.moveTo(0, 0);
+    recur(i,r);
+    long = 180;
+    ctx.moveTo(0, 0);
+    ctx.rotate(90 * d);
+    recur(i,r);
+    long = 400;
+    ctx.moveTo(0, 0);
+    ctx.rotate(90 * d);
+    recur(i,r);
+    long = 180;
+    ctx.moveTo(0, 0);
+    ctx.rotate(90 * d);
+    recur(i,r);
+    ctx.restore();
+    ctx.stroke();
+  }
+  else if(p == 'circle'){
+  }
+  else if(p == 'ellipse'){
+  }
+}
+
+
+function recur(i,r) {
+    var j, k, angle;
+    ctx.save();
+    if (i == 0) {
+        ctx.lineTo(long, 0);
+    }
+    else {
+        ctx.scale(1/r, 1/r);
+        ctx.rotate(60 * d);
+        recur(i - 1,r);
+        ctx.rotate(-120 * d);
+        recur(i - 1,r);
+        ctx.rotate(0 * d);
+        recur(i - 1,r);
+        ctx.rotate(120 * d);
+        recur(i - 1,r);
+        if(r > 2){
+            angle = 240;
+            for(k = 6 ; k <= 2*r ;){
+                ctx.rotate(0 * d);
+                recur(i - 1,r);
+                j = k/2;
+                if (j % 2 == 1){
+                    ctx.rotate(angle * d);
+                    recur(i - 1,r);
+                    angle = angle + 240;
+                }
+                else{
+                    ctx.rotate(angle * d);
+                    recur(i - 1,r);
+                    angle = angle + 120;
+                }
+                k = k + 2;
+            }
+        }
+    }
+    ctx.restore();
+    ctx.translate(long, 0);
+}
+var x,y,radius,xmiddle,ymiddle;
+var xlast = -1;
+var ylast = -1;
+var X,Y;
+
+
+function ellipse(x, y, w, h){
+  var k = (w/0.75)/2,
+    ww = w/2,
+    hh = h/2;
+    ctx.beginPath();
+    ctx.moveTo(x, y-hh);
+    ctx.bezierCurveTo(x+k, y-hh, x+k, y+hh, x, y+hh);
+    ctx.bezierCurveTo(x-k, y+hh, x-k, y-hh, x, y-hh);
+    //ctx.strokeStyle = "#000000";
+    //ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.closePath();
+
+}
+function polygon(nSides,radi,color,thick){
+
+    //clrcan();
+    c.width = c.width;
+    var numberOfSides = nSides,
+        size = radi;
+        Xcenter = c.width/2,
+        Ycenter = c.height/2;
+        step  = 2 * Math.PI / numberOfSides,
+        shift = (Math.PI / 180.0) * -45;
+    ctx.beginPath();
+
+    for (var i = 0; i <= numberOfSides;i += 1) {
+      var curStep = i * step + shift;
+      ctx.lineTo (Xcenter + size * Math.cos(curStep), Ycenter + size * Math.sin(curStep));
+    }
+    //ctx.strokeStyle = "#000000";
+    //ctx.lineWidth = 2;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = thick;
+    ctx.stroke();
+    ctx.closePath();
+}
+function clrcan(){
+
+  ctx.clearRect(0,0,c.width,c.height);
+  // ctx.fillStyle = "#FFFFFF";
+  // ctx.beginPath();
+  // ctx.fillRect(0,0,c.width,c.height);
+  // ctx.closePath();
+}
+
+function inWheel(rate,radi){
+
+  Xcenter = c.width/2,
+  Ycenter = c.height/2;
+  if(rate <= 0.2){
+    ellipse(Xcenter,Ycenter, radi*2*(1+rate),radi*2*(1-rate));
+  }
+  if(rate == 10){
+    rate = 0;
+  }
+    ellipse(Xcenter,Ycenter, 240*(1+rate),240*(1-rate));
+    ellipse(Xcenter,Ycenter, 50*(1+rate),50*(1-rate));
+    ellipse(Xcenter,Ycenter-60, 20*(1+rate),20*(1-rate));
+    ellipse(Xcenter-60,Ycenter, 20*(1+rate),20*(1-rate));
+    ellipse(Xcenter+60,Ycenter, 20*(1+rate),20*(1-rate));
+    ellipse(Xcenter-35,Ycenter+60, 20*(1+rate),20*(1-rate));
+    ellipse(Xcenter+35,Ycenter+60, 20*(1+rate),20*(1-rate));
+}
+function drawheel(score, radi, color, thick){
+  ctx.strokeStyle = color;
+  ctx.lineWidth = thick;
+  ctx.fillStyle = "#b22222";
+  var rate;
+  if(score == 100){
+    rate = 0;
+    inWheel(rate,radi);
+  }
+  else if(score<= 99 && score >= 80){
+    rate = (100 - score)/100;
+    inWheel(rate,radi);
+  }
+  else if(score<= 79 && score >= 4){
+    polygon(score, radi, color, thick);
+    rate = 10;
+    inWheel(rate,radi);
+  }
+}
+</script>
+
+<div>
+  <button class="button" id="clear">Clear Canvas</button>
+</div>
+
+
+
+<p>Here you can set up color and thickness!</p>
+<div>
+  <p>Color: <input type="text" id="color" value="#000000"> Thickness: <input type="text" id="thick" value="2">
+    <p>(For example: Blue is #0000ff, Red is #ff0000, Green is #008000)</p>
+</div>
+<p>Here you can press Button"Draw Fractal"!!</p>
+<div>
+  Primitive:<select id='pri'>
+  <option value='line' selected>line</option>
+  <option value='polyline' >polyline</option>
+  <option value='polygon'>polygon</option>
+  <option value='rectangle'>rectangle</option>
+  <option value='circle'>circle</option>
+  <option value='ellipse'>ellipse</option>
+  </select>
+
+  <p>Ratio: <input type="text" id="ratio" value="2"> Iterations: <input type="text" id="iter" value="0">
+  <button class="button" id="q1">Draw Fractal</button>
+  </p>
+</div>
+
+
+<p>Here you can press Button"Draw Wheel"!!</p>
+<div>
+  <p>Wheel's round radius: <input type="text" id="rad" value="200"> Driver's Score: <input type="text" id="score" value="80">
+  <button class="button" id="q2">Draw Wheel</button>
+  </p>
+</div>
+
+
+</body>
+</html>
