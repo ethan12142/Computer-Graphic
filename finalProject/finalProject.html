@@ -1,26 +1,149 @@
+<html><!DOCTYPE html>
 <html>
 
 <head>
 <title> My Parthenon </title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<div >
+  <p>
+  <h4>Project completed:</h4>
+  1. Draw three 2D "elevations" ("front" is in left-top, "top" is in left-bottum, "side" is in right-top)<br>
+  2. Enter coordinates: choose your model format(s)<br>
+  3. Transform object: apply 3D (Translate/Rotate/Scale/SHear) transformations to the created object.<br>
 
-<p>
-Project completed: 1. Draw three 2D "elevations" ("front" is in left-top, "top" is in left-bottum, "side" is in right-top)
-</p>
+  </p>
+  <p>
+
+</div>
+
 <style>
-.tl { position: absolute; top: 50; left: 50; right: 550; bottom: 550;}
-.tr { position: absolute; top: 50; left: 550; right: 1050; bottom: 550;}
-.bl { position: absolute; top: 550; left: 50; right: 1050; bottom: 1050; }
-.br { position: absolute; top: 550; left: 550; right: 1050; bottom: 1050;}
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
+#tl { position: absolute; top: 150; left: 300; right: 800; bottom: 650;
+      transform:rotate(0deg);
+      transform:translate(0px,0px);
+      transform:skew(0deg,0deg);
+      transform:scale(1,1);
+    }
+
+#tr { position: absolute; top: 150; left: 800; right: 1300; bottom: 650;}
+#bl { position: absolute; top: 650; left: 300; right: 1300; bottom: 1150; }
+#br { position: absolute; top: 650; left: 800; right: 1300; bottom: 1150;}
+#pr { position: absolute; top: 150; left: 300; right: 1300; bottom: 1150;}
 </style>
+
+
+<script>
+$(document).ready(function(){
+    $("#rot").click(function(){
+        rotate($("#rotd").val(), $("#ele").val());
+    });
+    $("#tra").click(function(){
+        translate($("#trasx").val(), $("#trasy").val(), $("#ele").val());
+    });
+    $("#ske").click(function(){
+        skew($("#skx").val(), $("#sky").val(), $("#ele").val());
+    });
+    $("#sca").click(function(){
+        scale($("#scx").val(), $("#scy").val(), $("#ele").val());
+    });
+});
+
+function rotate(value, ele)
+{
+
+//  document.getElementById(kk).style.transform="rotate(" + value + "deg)";
+if(ele == 'Front'){
+  document.getElementById('tl').style.transform="rotate(" + value + "deg)";
+}
+else if(ele == 'Side'){
+  document.getElementById('tr').style.transform="rotate(" + value + "deg)";
+}
+else if(ele == 'Top'){
+  document.getElementById('bl').style.transform="rotate(" + value + "deg)";
+}
+else if(ele == '3d'){
+  document.getElementById('br').style.transform="rotate(" + value + "deg)";
+}
+//document.getElementById('span1').innerHTML=value + "deg";
+}
+
+function translate(valuex, valuey, ele)
+{
+  if(ele == 'Front'){
+    document.getElementById('tl').style.transform="translate(" + valuex +"px," + valuey + "px)";
+  }
+  else if(ele == 'Side'){
+    document.getElementById('tr').style.transform="translate(" + valuex +"px," + valuey + "px)";
+  }
+  else if(ele == 'Top'){
+    document.getElementById('bl').style.transform="translate(" + valuex +"px," + valuey + "px)";
+  }
+  else if(ele == '3d'){
+    document.getElementById('br').style.transform="translate(" + valuex +"px," + valuey + "px)";
+  }
+}
+
+function skew(valuex, valuey, ele)
+{
+  if(ele == 'Front'){
+    document.getElementById('tl').style.transform="skew(" + valuex +"deg," + valuey + "deg)";
+  }
+  else if(ele == 'Side'){
+    document.getElementById('tr').style.transform="skew(" + valuex +"deg," + valuey + "deg)";
+  }
+  else if(ele == 'Top'){
+    document.getElementById('bl').style.transform="skew(" + valuex +"deg," + valuey + "deg)";
+  }
+  else if(ele == '3d'){
+    document.getElementById('br').style.transform="skew(" + valuex +"deg," + valuey + "deg)";
+  }
+}
+
+function scale(valuex, valuey, ele)
+{
+  if(ele == 'Front'){
+    document.getElementById('tl').style.transform="scale(" + valuex +"," + valuey + ")";
+  }
+  else if(ele == 'Side'){
+    document.getElementById('tr').style.transform="scale(" + valuex +"," + valuey + ")";
+  }
+  else if(ele == 'Top'){
+    document.getElementById('bl').style.transform="scale(" + valuex +"," + valuey + ")";
+  }
+  else if(ele == '3d'){
+    document.getElementById('br').style.transform="scale(" + valuex +"," + valuey + ")";
+  }
+}
+</script>
 </head>
 
 
 <body bgcolor = "lavender";>
 
-<div class="tl">
+<div id="pr">
+<svg id="periphery" width="1000" height="1000" style="border:3px solid black;">
+  <line x1="0" y1="500" x2="1000" y2="500" style="stroke:rgb(0,0,0);stroke-width:3"/>
+  <line x1="500" y1="0" x2="500" y2="1000" style="stroke:rgb(0,0,0);stroke-width:3"/>
+</svg>
+</div>
 
-<svg id="front-view" width="500" height="500" style="border:3px solid black;">
+<div id="tl">
+
+<svg id="front-view" width="500" height="500"  >
+
+
 
 
  parthenon-triangle
@@ -70,8 +193,8 @@ Project completed: 1. Draw three 2D "elevations" ("front" is in left-top, "top" 
  </svg>
 </div>
 
-<div class="tr">
- <svg id="side-view" width="500" height="500" style="border:3px solid black;">
+<div id="tr">
+ <svg id="side-view" width="500" height="500">
 
 
 
@@ -116,9 +239,9 @@ Project completed: 1. Draw three 2D "elevations" ("front" is in left-top, "top" 
  </svg>
 </div>
 
-<div class="bl">
+<div id="bl">
 
- <svg id="top-view" width="500" height="500" style="border:3px solid black;">
+ <svg id="top-view" width="500" height="500">
 
 
  <line x1="58" y1="410" x2="58" y2="170" style="fill:blue;stroke:blue;stroke-width:4;opacity:5" />
@@ -126,13 +249,50 @@ Project completed: 1. Draw three 2D "elevations" ("front" is in left-top, "top" 
  <line x1="180" y1="410" x2="180" y2="170" style="fill:gold;stroke:gold;stroke-width:10;opacity:5" />
  <line x1="300" y1="410" x2="300" y2="170" style="fill:blue;stroke:blue;stroke-width:4;opacity:5" />
  </svg>
+
 </div>
-<div class="br">
-  <svg id="top-view" width="500" height="500" style="border:3px solid black;">
+<div id="br">
+  <svg id="top-view" width="500" height="500" >
 
   </svg>
-
 </div>
+<form class="" action="index.html" method="post">
+  <div >
+    <h3>Elevations: <select id='ele'></h3>
+    <option value='Front' selected>Front</option>
+    <option value='Side' >Side</option>
+    <option value='Top'>Top</option>
+    <option value='3D'>3D</option>
+    </select>
+  </div>
+</form>
+<div>
+<h4>Rotate:</h4>
+Rotate Degree: <input type="text" id="rotd" value="7" required size="4">(-360~360) <br>
+  <button class="button" id="rot">Let's Rotate!</button>
+</div>
+
+<div>
+<h4>Translate:</h4>
+Translate X: <input type="text" id="trasx" value="200" required size="4"><br>
+Translate Y: <input type="text" id="trasy" value="10" required size="4"> <br>
+  <button class="button" id="tra">Let's Translate!</button>
+</div>
+
+<div>
+<h4>SHear:</h4>
+SHear Degree: <input type="text" id="skx" value="30" required size="4">(-360~360) <br>
+SHear Degree: <input type="text" id="sky" value="20" required size="4">(-360~360) <br>
+  <button class="button" id="ske">Let's SHear!</button>
+</div>
+<div>
+<h4>Scale:</h4>
+Scale Degree: <input type="text" id="scx" value="1.5" required size="4"> <br>
+Scale Degree: <input type="text" id="scy" value="1.2" required size="4"> <br>
+  <button class="button" id="sca">Let's Scale!</button>
+</div>
+<!-- <input type="range" min="-360" max="360" value="0" onchange="rotate(this.value)" /><br>
+transform: rotate(<span id="span1">0deg</span>); -->
 
  </body>
 </html>
