@@ -138,9 +138,12 @@ to { -webkit-transform: rotateY(360deg); }
     }
 
 #tr { position: absolute; top: 150; left: 800; right: 1300; bottom: 650;}
-#bl { position: absolute; top: 650; left: 300; right: 1300; bottom: 1150; }
+#bl { position: absolute; top: 650; left: 300; right: 1300; bottom: 1150;}
 #br { position: absolute; top: 650; left: 800; right: 1300; bottom: 1150;}
 #pr { position: absolute; top: 150; left: 300; right: 1300; bottom: 1150;}
+#pr2 { position: absolute; top: 1200; left: 300; right: 1300; bottom: 2200;}
+#onepp { position: absolute; top: 1200; left: 300; right: 800; bottom: 1700;}
+
 </style>
 
 
@@ -233,6 +236,13 @@ function scale(valuex, valuey, ele)
 <body bgcolor = "lavender";>
 
 <div id="pr">
+<svg id="periphery" width="1000" height="1000" rx="20" ry="20" style="border:3px solid black;">
+  <line x1="0" y1="500" x2="1000" y2="500" style="stroke:rgb(0,0,0);stroke-width:3"/>
+  <line x1="500" y1="0" x2="500" y2="1000" style="stroke:rgb(0,0,0);stroke-width:3"/>
+</svg>
+</div>
+
+<div id="pr2">
 <svg id="periphery" width="1000" height="1000" rx="20" ry="20" style="border:3px solid black;">
   <line x1="0" y1="500" x2="1000" y2="500" style="stroke:rgb(0,0,0);stroke-width:3"/>
   <line x1="500" y1="0" x2="500" y2="1000" style="stroke:rgb(0,0,0);stroke-width:3"/>
@@ -373,6 +383,17 @@ function scale(valuex, valuey, ele)
     </div>
   </svg>
 </div>
+
+<div id="onepp">
+  <svg width="500" height="500">
+    <path d="M0 350 L501 350  Z"  fill="black" stroke="black" stroke-width="3" />
+    <!-- <path d="M150 250 L150 400 L300 400 L300 250 L150 250 Z"   stroke="black" /> -->
+    <rect x="150" y="250"  width="150" height="150" stroke="black" fill="Cyan" stroke-width="3"/>
+    <circle cx="458" cy="350" r="5" fill="red" />
+    <path d="M300 250 L350 280  Z"  fill="Cyan" stroke="black" stroke-width="3" />
+  </svg>
+</div>
+
 <form class="" action="index.html" method="post">
   <div >
     <h3>Elevations: <select id='ele'></h3>

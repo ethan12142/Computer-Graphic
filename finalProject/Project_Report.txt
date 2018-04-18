@@ -3,3 +3,14 @@ Project completed:
 2. Transform object: apply 3D (Translate/Rotate/Scale/SHear) transformations to the created object.
 3. Viewing: view your created object from multiple views.(in 3d part)
 4. Transform camera/viewer/light sources(s).
+
+Week1:
+I draw three 2D elevations: Front, Side, and Top.
+
+Week2:
+I added transforms(Translate/Rotate/Scale/SHear) for each elevations.
+
+Week3:
+I added 3D rotate objection of my elevations.
+And the button"Go to Camera/Light" can link to transform camera/viewer/light sources(s). 
+ 

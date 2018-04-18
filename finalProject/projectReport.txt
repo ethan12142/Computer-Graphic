@@ -1,4 +1,0 @@
-Completed:
-  1. Draw three 2D "elevations" ("front" is in left-top, "top" is in left-bottum, "side" is in right-top)
-  2. Enter coordinates: choose your model format(s)
-  3. Transform object: apply 3D (Translate/Rotate/Scale/SHear) transformations to the created object.
