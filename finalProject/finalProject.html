@@ -7,10 +7,7 @@
 <div >
   <p>
   <h3>Project completed:</h3>
-  1.(a) Draw three 2D "elevations" ("front" is in left-top, "top" is in left-bottum, "side" is in right-top) (b) Enter coordinates: choose your model format(s)<br>
-  2. Transform object: apply 3D (Translate/Rotate/Scale/SHear) transformations to the created object.<br>
-  3. Viewing: view your created object from multiple views.(in 3d part)<br>
-  4. Transform camera/viewer/light sources(s).<br>
+    The details can see the Project Rpoert: <a href="Project_Report.txt">Project Report</a>
   </p>
   <p>
 
@@ -47,7 +44,11 @@ to { -webkit-transform: rotateY(360deg); }
 	-webkit-transform-style: preserve-3d;
   -webkit-animation: spin 16s infinite linear;
 }
-
+.iso-axis{
+  width: 200px;
+	-webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateY(-45deg);
+}
 .triangle {
 	position: absolute;
   border: 100px solid transparent;
@@ -94,7 +95,14 @@ to { -webkit-transform: rotateY(360deg); }
   box-shadow: 0 0 100px 100px SteelBlue;
   -webkit-transform: rotateX(90deg) translateX(100px);
 }
-
+.iso-face{
+  outline: 1px solid lavender;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 1.0;
+  box-shadow: inset 0px 0px 100px lavender;
+}
 .box-face {
   outline: 1px solid lavender;
   position: absolute;
@@ -143,7 +151,9 @@ to { -webkit-transform: rotateY(360deg); }
 #pr { position: absolute; top: 150; left: 300; right: 1300; bottom: 1150;}
 #pr2 { position: absolute; top: 1200; left: 300; right: 1300; bottom: 2200;}
 #onepp { position: absolute; top: 1200; left: 300; right: 800; bottom: 1700;}
-
+#twopp { position: absolute; top: 1200; left: 800; right: 1300; bottom: 1700;}
+#threepp { position: absolute; top: 1700; left: 300; right: 800; bottom: 2200;}
+#iso { position: absolute; top: 1700; left: 800; right: 1300; bottom: 2200;}
 </style>
 
 
@@ -386,17 +396,83 @@ function scale(valuex, valuey, ele)
 
 <div id="onepp">
   <svg width="500" height="500">
-    <path d="M0 350 L501 350  Z"  fill="black" stroke="black" stroke-width="3" />
+    <path d="M0 350 L501 350  Z"  fill="black" stroke="black" stroke-width="2" />
     <!-- <path d="M150 250 L150 400 L300 400 L300 250 L150 250 Z"   stroke="black" /> -->
     <rect x="150" y="250"  width="150" height="150" stroke="black" fill="Cyan" stroke-width="3"/>
     <circle cx="458" cy="350" r="5" fill="red" />
-    <path d="M300 250 L350 280  Z"  fill="Cyan" stroke="black" stroke-width="3" />
+    <path d="M300 250 L350 280 L350 385 L300 400 Z"  fill="Cyan" stroke="black" stroke-width="3" />
+  </svg>
+</div>
+
+<div id="twopp">
+  <svg width="500" height="500">
+    <path d="M1 360 L502 360  Z"  fill="black" stroke="black" stroke-width="2" />
+    <!-- <path d="M150 250 L150 400 L300 400 L300 250 L150 250 Z"   stroke="black" /> -->
+
+    <circle cx="458" cy="360" r="5" fill="red" />
+    <circle cx="60" cy="360" r="5" fill="red" />
+    <path d="M230 220 L230 390 L330 410 L330 135 Z"  fill="Cyan" stroke="black" stroke-width="3" />
+    <path d="M330 135 L395 250 L395 388 L330 410 Z"  fill="Cyan" stroke="black" stroke-width="3" />
+  </svg>
+</div>
+
+<div id="threepp">
+  <svg width="500" height="500">
+    <path d="M0 160 L500 160  Z"  fill="black" stroke="black" stroke-width="2" />
+    <circle cx="458" cy="160" r="5" fill="red" />
+    <circle cx="60" cy="160" r="5" fill="red" />
+    <circle cx="250" cy="460" r="5" fill="red" />
+    <path d="M250 260 L250 320 L330 260 L344 220 Z"  fill="Cyan" stroke="black" stroke-width="3" />
+    <path d="M344 220 L250 200 L164 220 L250 260 Z"  fill="Cyan" stroke="black" stroke-width="3" />
+    <path d="M164 220 L175 255 L250 320 L250 260 Z"  fill="Cyan" stroke="black" stroke-width="3" />
+  </svg>
+</div>
+
+<div id="iso">
+  <svg width="500" height="500" >
+    <div class="triangle-root">
+      <div class="iso-axis">
+
+        <div class="triangle front"></div>
+        <div class="triangle back"></div>
+        <div class="triangle left"></div>
+        <div class="triangle right"></div>
+
+        <div class="bottom"></div>
+
+        <!-- <div class="shadow"></div> -->
+        <div class="iso-face box-face--is-front"></div>
+        <div class="iso-face box-face--is-back"></div>
+        <div class="iso-face box-face--is-right"></div>
+        <div class="iso-face box-face--is-left"></div>
+      </div>
+    </div>
   </svg>
 </div>
 
 <form class="" action="index.html" method="post">
   <div >
-    <h3>Elevations: <select id='ele'></h3>
+      <legend><b>Map</b></legend>
+      <table align="left" style="padding: 1px; border: 1px solid red; border-radius: 5px; text-align:center;" >
+        <tr style = "padding: 1px; border: 1px solid red; border-radius: 10px">
+          <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">Front</td>
+          <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">Side</td>
+        </tr>
+        <tr style = "padding: 1px; border: 1px solid red; border-radius: 10px">
+          <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">Top</td>
+          <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">3D</td>
+        </tr>
+      </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>Please choose the Elevation: <br>Elevations: <select id='ele'></h3>
     <option value='Front' selected>Front</option>
     <option value='Side' >Side</option>
     <option value='Top'>Top</option>
@@ -433,6 +509,28 @@ Scale Degree(Y): <input type="text" id="scy" value="1.2" required size="4"> <br>
 <!-- <input type="range" min="-360" max="360" value="0" onchange="rotate(this.value)" /><br>
 transform: rotate(<span id="span1">0deg</span>); -->
 <input class="button" onclick="location.href='light.html';" value="Go to Camera/Light!" />
+<div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <legend><b>Map</b></legend>
+  <table align="left" style="padding: 1px; border: 1px solid red; border-radius: 5px; text-align:center;" >
+    <tr style = "padding: 1px; border: 1px solid red; border-radius: 10px">
+      <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">One point</td>
+      <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">Two point</td>
+    </tr>
+    <tr style = "padding: 1px; border: 1px solid red; border-radius: 10px">
+      <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">Three point</td>
+      <td style = "padding: 30px; border: 1px solid red; border-radius: 1px 1px 1px 1px">Isometic</td>
+    </tr>
+  </table>
 </div>
  </body>
 </html>
