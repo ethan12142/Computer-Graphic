@@ -7,7 +7,7 @@
 <div >
   <p>
   <h3>Project completed:</h3>
-    The details can see the Project Rpoert: <a href="Project_Report.txt">Project Report</a>
+    The details can see the Project Rpoert: <a href="Project_Report.pdf">Project Report</a>
   </p>
   <p>
 
@@ -138,6 +138,68 @@ to { -webkit-transform: rotateY(360deg); }
   background-size: auto 100%;
 }
 
+.txbottom {
+  width: 200px;
+  height: 200px;
+  background:green ;
+  -webkit-transform: rotateX(90deg) translateY(100px);
+	-webkit-transform-origin: bottom center;
+}
+.txbox-face {
+  outline: 0px solid lavender;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  opacity: 0.9;
+  box-shadow: inset 0px 0px 100px lavender;
+}
+.txbox-face--is-back {
+  transform: translateZ(-100px) rotateY(180deg);
+  background-color: #eee;
+  background-image: url(tx.png);
+  background-size: auto 100%;
+}
+.txbox-face--is-right {
+  transform: rotateY(-270deg) translateX(100px);
+  transform-origin: top right;
+  background-color: #ddd;
+  background-image: url(tx.png);
+  background-size: auto 100%;
+}
+.txbox-face--is-left {
+  transform: rotateY(270deg) translateX(-100px);
+  transform-origin: center left;
+  background-color: #ddd;
+  background-image: url(tx.png);
+  background-size: auto 100%;
+}
+.txbox-face--is-front {
+  transform: translateZ(300px);
+  /*background-color: #eee;*/
+  background-image: url(tx.png);
+  background-size: auto 100%;
+}
+.txshadow {
+  position: absolute ;
+  top: 450px ;
+  box-shadow: 0 0 100px 100px SteelBlue;
+  -webkit-transform: rotateX(90deg) translateX(100px);
+}
+.txtriangle-root{
+  position: absolute;
+  top: 400px;
+  left: 300px;
+  margin-left: -100px;
+	-webkit-perspective: 1000px;
+	-webkit-perspective-origin: 50% 100px;
+}
+
+.txtriangle-axis {
+	width: 500px;
+	-webkit-transform-style: preserve-3d;
+  -webkit-animation: spin 16s infinite linear;
+}
+
 #tl { position: absolute; top: 150; left: 300; right: 800; bottom: 650;
       transform:rotate(0deg);
       transform:translate(0px,0px);
@@ -150,10 +212,12 @@ to { -webkit-transform: rotateY(360deg); }
 #br { position: absolute; top: 650; left: 800; right: 1300; bottom: 1150;}
 #pr { position: absolute; top: 150; left: 300; right: 1300; bottom: 1150;}
 #pr2 { position: absolute; top: 1200; left: 300; right: 1300; bottom: 2200;}
+#pr3 { position: absolute; top: 2250; left: 300; right: 1300; bottom: 3250;}
 #onepp { position: absolute; top: 1200; left: 300; right: 800; bottom: 1700;}
 #twopp { position: absolute; top: 1200; left: 800; right: 1300; bottom: 1700;}
 #threepp { position: absolute; top: 1700; left: 300; right: 800; bottom: 2200;}
 #iso { position: absolute; top: 1700; left: 800; right: 1300; bottom: 2200;}
+
 </style>
 
 
@@ -259,9 +323,15 @@ function scale(valuex, valuey, ele)
 </svg>
 </div>
 
+<div id="pr3">
+<svg id="periphery" width="1000" height="1000" rx="20" ry="20" style="border:3px solid black;">
+</svg>
+</div>
+
 <div id="tl">
 
 <svg id="front-view" width="500" height="500"  >
+
 
 
 
@@ -450,6 +520,29 @@ function scale(valuex, valuey, ele)
   </svg>
 </div>
 
+<div id="pr3">
+  <svg id="tx" width="1000" height="1000" >
+    <image x="5" y="5" width="1000" height="1000"
+         xlink:href="1.png" />
+    <div class="txtriangle-root">
+      <div class="txtriangle-axis">
+
+        <!-- <div class="txtriangle txfront"></div>
+        <div class="txtriangle txback"></div>
+        <div class="txtriangle txleft"></div>
+        <div class="txtriangle txright"></div> -->
+
+        <!-- <div class="bottom"></div> -->
+
+        <!-- <div class="shadow"></div> -->
+        <div class="txbox-face txbox-face--is-front"></div>
+        <div class="txbox-face txbox-face--is-back"></div>
+        <div class="txbox-face txbox-face--is-right"></div>
+        <div class="txbox-face txbox-face--is-left"></div>
+      </div>
+    </div>
+  </svg>
+</div>
 <form class="" action="index.html" method="post">
   <div >
       <legend><b>Map</b></legend>
