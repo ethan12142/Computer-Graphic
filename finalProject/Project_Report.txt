@@ -1,0 +1,25 @@
+Project completed:
+1.(a) Draw three 2D "elevations" ("front" is in left-top, "top" is in left-bottum, "side" is in right-top) (b) Enter coordinates: choose your model format(s)
+2. Transform object: apply 3D (Translate/Rotate/Scale/SHear) transformations to the created object.
+3. Viewing: view your created object from multiple views.(in 3d part)
+4. Transform camera/viewer/light sources(s).
+5. Generate different projections of the objects (refer to class discussions about different projections, see projection "tree" see figure).
+6. Edit/Change perspective projection vanishing points (1, 2, 3).
+
+
+Week1:
+I draw three 2D elevations: Front, Side, and Top.
+
+Week2:
+I added transforms(Translate/Rotate/Scale/SHear) for each elevations.
+
+Week3:
+I added 3D rotate objection of my elevations.
+And the button"Go to Camera/Light" can link to transform camera/viewer/light sources(s). 
+ 
+Week4:
+I added 1, 2, and 3 point(s) perspective.
+And Isometric.
+
+
+Access to Image at 'file:///Users/ethan/Downloads/ComputerGraphic/finalProject/pic/circuit_pattern.png' from origin 'null' has been blocked by CORS policy: Invalid response. Origin 'null' is therefore not allowed access.
